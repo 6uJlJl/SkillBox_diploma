@@ -17,8 +17,10 @@ const listofphotos = (state={}, action) => {
             if (action.id === item.id) {
                 let newLikes = (item.liked_by_user) ? item.likes-1 : item.likes+1;
                 return Object.assign ({}, item, {
-                  item: item.liked_by_user = !item.liked_by_user,
-                  item: item.likes = newLikes
+                  item: {
+                    liked_by_user : !item.liked_by_user,
+                    likes : newLikes
+                  }
                 })};
             return item;
           })
