@@ -17,10 +17,8 @@ const listofphotos = (state={}, action) => {
             if (action.id === item.id) {
                 let newLikes = (item.liked_by_user) ? item.likes-1 : item.likes+1;
                 return Object.assign ({}, item, {
-                  item: {
-                    liked_by_user : !item.liked_by_user,
-                    likes : newLikes
-                  }
+                  liked_by_user : !item.liked_by_user,
+                  likes : newLikes
                 })};
             return item;
           })
@@ -28,6 +26,13 @@ const listofphotos = (state={}, action) => {
 
     case "LOAD_PHOTOS":
       return state;
+
+    case "SET_UNSPLASH":
+      return Object.assign ({}, state, {
+        unsplash: action.unsplash,
+        code: action.code
+      });
+
 
     default:
       return state;

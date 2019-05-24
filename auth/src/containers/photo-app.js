@@ -4,7 +4,6 @@ import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
 import { likePhoto, unlikePhoto, loadPhotos, addPhotos } from '../actions';
 
-
 let PhotoApp = (props) => {
 
   let {
@@ -12,41 +11,31 @@ let PhotoApp = (props) => {
     likePhoto,
     unlikePhoto,
     loadPhotos,
-    dispatch,
-    unsplash
+    dispatch
   } = props
 
   if ( listOfPhotos.listOfPhotos.length === 0 ) {
-    return (
-      <div>
-        <p>Здесь пока нет фотографий...</p>
-        <AddButton
-          loadPhotos={loadPhotos}
-          code = {listOfPhotos.code}
-          unsplash = {listOfPhotos.unsplash}
-          counter = {listOfPhotos.counter}
-        />
-        </div>
-      )
-  } else {
-    return (
-        <div>
-          <MainList
-            listOfPhotos={listOfPhotos.listOfPhotos}
-            likePhoto={likePhoto}
-            unlikePhoto={unlikePhoto}
-            code = {listOfPhotos.code}
-            unsplash = {listOfPhotos.unsplash}
-          />
-          <AddButton
-            loadPhotos={loadPhotos}
-            code = {listOfPhotos.code}
-            unsplash = {listOfPhotos.unsplash}
-            counter = {listOfPhotos.counter}
-          />
-        </div>
-    )
+    return (<div>
+              <p>Секунду, сейчас все загрузится...</p>
+            </div>)
   }
+  return (
+    <div>
+      <MainList
+        listOfPhotos={listOfPhotos.listOfPhotos}
+        likePhoto={likePhoto}
+        unlikePhoto={unlikePhoto}
+        code = {listOfPhotos.code}
+        unsplash = {listOfPhotos.unsplash}
+      />
+      <AddButton
+        loadPhotos={loadPhotos}
+        code = {listOfPhotos.code}
+        unsplash = {listOfPhotos.unsplash}
+        counter = {listOfPhotos.counter}
+      />
+    </div>
+  )
 };
 
 const mapStateToProps = (state) => {
