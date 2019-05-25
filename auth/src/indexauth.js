@@ -13,12 +13,11 @@ import listofphotos from './reducers/listofphotos';
 import { loadState, saveState } from './localestorage';
 import { addPhotos } from './actions'
 
-let initialstate = loadState() || {
-                                    listOfPhotos: [],
-                                    code: "",
-                                    counter: 0,
-                                    unsplash: {}
-                                  };
+let initialstate = {listOfPhotos: [],
+                        code: "",
+                        counter: 0,
+                        unsplash: {}
+                      };
 
 const store = createStore (
   listofphotos,
@@ -29,51 +28,56 @@ const store = createStore (
   )
 );
 
-if ( initialstate.listOfPhotos.length === 0 ) {
-  let unsplash = new Unsplash({
-    applicationId: "e4139046c1f47dffb34a77d3bf568bcc4ae568c6070b8210a2e529d16881fcec",
-    secret: "8e374945a4007e2d9b2bd8185d2377368d128bf87f9298dd66aa463fe2562596",
-    callbackUrl: "http://bgatesmf.bget.ru/auth"
-  });
-  const code = location.search.split('code=')[1] || "";
-  if ( code ) {
-    try {
-      unsplash.auth.userAuthentication(code)
-       .then(res => res.json())
-       .then(json => {
-         unsplash.auth.setBearerToken(json.access_token);
-         const bearerToken = json.access_token;
-         store.dispatch ( { type:"SET_UNSPLASH", unsplash, code } );
+let unsplash = new Unsplash({
+  applicationId: "e4139046c1f47dffb34a77d3bf568bcc4ae568c6070b8210a2e529d16881fcec",
+  secret: "8e374945a4007e2d9b2bd8185d2377368d128bf87f9298dd66aa463fe2562596",
+  callbackUrl: "http://bgatesmf.bget.ru/auth"
+});
 
-         unsplash.photos.listPhotos(1, 10, "latest")
-           .then(res => res.json())
-           .then(json => {
-              store.dispatch ( addPhotos (json, 1));
+let loadedState = loadState();
+const code = (loadedState)
+  ? loadedState.code
+  : location.search.split('code=')[1];
+
+if ( code ) {
+  try {
+    if ( loadedState ) {
+      unsplash.auth.setBearerToken(loadedState.bearerToken);
+      store.dispatch ( addPhotos (loadedState.listOfPhotos, loadedState.counter, code, unsplash));
+    }
+    else {
+      unsplash.auth.userAuthentication(code)
+        .then(res => res.json())
+        .then(json => {
+          unsplash.auth.setBearerToken(json.access_token);
+          unsplash.photos.listPhotos(1, 10, "latest")
+            .then(res => res.json())
+            .then(json => {
+              store.dispatch ( addPhotos (json, 1, code, unsplash));
             });
-         });
-    } catch (e) {
-        console.log("При загрузке фотографий произошла ошибка: "+e);
-    };
-  } else alert("Не удалось получить данные от Unsplash, попробуйте перезагрузить страницу или зайдите попозже...");
-}
+        });
+    }
+  } catch (e) {
+    console.log("При загрузке фотографий произошла ошибка: "+e);
+  };
+} else alert("Не удалось получить данные от Unsplash, попробуйте перезагрузить страницу или зайдите попозже...");
 
 store.subscribe (throttle(() => {
-  saveState( store.getState());
+  let state = store.getState();
+  saveState({
+    listOfPhotos: state.listOfPhotos,
+    code: state.code,
+    counter: state.counter,
+    bearerToken: state.unsplash._bearerToken
+  } );
 }, 1000));
 
 ReactDOM.render (
-  <Provider store={store}>
-    <PhotoApp />
-  </Provider>,
+  <HashRouter>
+    <Provider store={store}>
+      <Route exact path="/" component={PhotoApp}/>
+      <Route path="/image/:id" component={PhotoItem} />
+    </Provider>
+  </HashRouter>,
   document.querySelector (".posts")
 );
-
-
-/*
-
-    <HashRouter>
-     <Route exact path="/" component={PhotoApp}/>
-     <Route path="/image/:id" component={PhotoItem} />
-  </HashRouter>
-
-*/

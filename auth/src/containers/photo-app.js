@@ -6,19 +6,14 @@ import { likePhoto, unlikePhoto, loadPhotos, addPhotos } from '../actions';
 
 let PhotoApp = (props) => {
 
-  let {
-    listOfPhotos,
-    likePhoto,
-    unlikePhoto,
-    loadPhotos,
-    dispatch
-  } = props
+  let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos, dispatch } = props
 
   if ( listOfPhotos.listOfPhotos.length === 0 ) {
     return (<div>
               <p>Секунду, сейчас все загрузится...</p>
             </div>)
   }
+
   return (
     <div>
       <MainList
@@ -49,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
     likePhoto: (code, unsplash, id) => dispatch( likePhoto(code, unsplash, id) ),
     unlikePhoto: (code, unsplash, id) => dispatch( unlikePhoto(code, unsplash, id) ),
     loadPhotos: (code, unsplash, counter) => dispatch( loadPhotos(code, unsplash, counter) ),
-    addPhotos: (json, counter) => dispatch (addPhotos (json, counter))
+    addPhotos: (json, counter, code, unsplash) => dispatch (addPhotos (json, counter, code, unsplash))
   }
 }
 
