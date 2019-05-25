@@ -1,10 +1,10 @@
-import Unsplash from 'unsplash-js';
-
-export const addPhotos = (json, counter) => {
+export const addPhotos = (json, counter, code, unsplash) => {
   return {
     type: "ADD_PHOTOS",
     json,
-    counter
+    counter,
+    code,
+    unsplash
   }
 }
 
@@ -38,8 +38,9 @@ export const loadPhotos = (code, unsplash, counter) => {
   return dispatch => {
     try {
       unsplash.photos.listPhotos(counter+1, 10, "latest")
-          .then(res => res.json())
-          .then(json => { dispatch({ type: 'ADD_PHOTOS', json, counter}) });
+        .then(res => res.json())
+        .then(json => {
+          dispatch({ type: 'ADD_PHOTOS', json, counter, code, unsplash}) });
     } catch (e) {
       console.log("Произошла ошибка при отправке данных: "+e);
     };

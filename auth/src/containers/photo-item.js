@@ -8,7 +8,7 @@ import Description from '../components/description';
 let PhotoItem = (props) => {
 
   let { id } = props.match.params;
-  let { listOfPhotos, code, unsplash } = props;
+  let { listOfPhotos, likePhoto, unlikePhoto } = props;
 
   return (
     listOfPhotos.listOfPhotos.map (item => {
@@ -27,8 +27,8 @@ let PhotoItem = (props) => {
                 item={item}
                 likePhoto={likePhoto}
                 unlikePhoto={unlikePhoto}
-                code = {code}
-                unsplash = {unsplash}
+                code = {listOfPhotos.code}
+                unsplash = {listOfPhotos.unsplash}
             />
           </div>
         )
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
     likePhoto: (code, unsplash, id) => dispatch( likePhoto(code, unsplash, id) ),
     unlikePhoto: (code, unsplash, id) => dispatch( unlikePhoto(code, unsplash, id) ),
     loadPhotos: (code, unsplash, counter) => dispatch( loadPhotos(code, unsplash, counter) ),
-    addPhotos: (json, counter) => dispatch (addPhotos (json, counter))
+    addPhotos: (json, counter, code, unsplash) => dispatch (addPhotos (json, counter, code, unsplash))
   }
 }
 

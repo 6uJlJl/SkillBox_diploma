@@ -1,6 +1,3 @@
-import { addPhotos } from '../actions';
-
-
 const listofphotos = (state={}, action) => {
 
   switch ( action.type ) {
@@ -8,7 +5,9 @@ const listofphotos = (state={}, action) => {
     case "ADD_PHOTOS":
       return Object.assign ({}, state,{
           listOfPhotos: state.listOfPhotos.concat (action.json),
-          counter: action.counter+1
+          counter: action.counter+1,
+          code : action.code,
+          unsplash : action.unsplash
       });
 
     case "LIKE_PHOTO":
@@ -17,17 +16,12 @@ const listofphotos = (state={}, action) => {
             if (action.id === item.id) {
                 let newLikes = (item.liked_by_user) ? item.likes-1 : item.likes+1;
                 return Object.assign ({}, item, {
-                  item: {
-                    liked_by_user : !item.liked_by_user,
-                    likes : newLikes
-                  }
+                  liked_by_user : !item.liked_by_user,
+                  likes : newLikes
                 })};
             return item;
           })
       })
-
-    case "LOAD_PHOTOS":
-      return state;
 
     default:
       return state;
