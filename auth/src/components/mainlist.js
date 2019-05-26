@@ -4,20 +4,10 @@ import { Link } from 'react-router-dom'
 import Description from './description';
 
 const MainList = (props) => {
-    let {
-      listOfPhotos,
-      likePhoto,
-      unlikePhoto,
-      code,
-      unsplash
-    } = props;
-
-    console.log("MainList: "+unsplash);
+    let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash } = props;
 
     return (
-      <div
-        className = "flex-container"
-      >
+      <div className = "flex-container" >
         {
           listOfPhotos.map ( item => {
               return (
