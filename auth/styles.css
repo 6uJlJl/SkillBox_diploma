@@ -1,5 +1,7 @@
 html, body {
 	font-family: Helvetica;
+	margin: 0;
+	padding: 0;
 }
 
 .red-svg {
@@ -11,75 +13,138 @@ html, body {
 
 }
 
-h1 {
+.header-p {
   text-align: center;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .posts {
-  text-align: center;
+	text-align: center; 
+}
+
+.flex-container {
+	display: flex;
+	align-items: end;
+  	justify-content: space-evenly;
+  	flex-wrap: wrap;
 }
 
 .post {
 	padding: 20px;
 	border: 1px solid #cccccc;
 	margin: 5px;
-	display: inline-block;
-	vertical-align: top;
+	min-width: 400px;
 }
 
 .description {
+	display: flex;
+	align-items: center;
+  	justify-content: space-evenly;
 	border: 1px solid #ccdddd;
 }
 
 .user {
-	display: inline-block;
-	vertical-align:middle;
 	padding: 0 10px;
 }
 
 .profile_image {
+	display: inline-block;
 	width: 32px;
 	height: 32px;
 	border-radius: 21px;
 }
 
 .user_name a {
+	display: flex;
+	align-items: center;
+  	justify-content: space-around;
 	text-decoration: none;
 	color: black;
 }
 
 .user_name_text {
 	display: inline-block;
+	margin-left: 5px;
 }
 
 .date {
-	display: inline-block;
-	vertical-align:middle;
 	font-size: 14px;
 	padding: 10px;
 }
 
 .likes {
-	display: inline-block;
-	vertical-align:middle;
+	display: flex;
+	align-items: center;
+  	justify-content: space-around;
 	padding: 10px;
 	position: relative;
 }
 
 .likes span {
-	display: inline-block;
 	font-size: 14px;
 }
 
+.photo-item-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.back {
+	font-size: 120px;
+	color: gray;
+}
+
 .photo-item {
-	border: 1px solid #ccdddd;
 	display: inline-block;
+	border: 1px solid #ccdddd;
 	text-align: center;
 	padding: 20px;
+}
+
+.item-img {
+	width: 100%;
 }
 
 input {
 	width: 200%
 	height: 40px;
 	padding: 10px;
+	margin: 20px;
+}
+
+@media (max-width: 900px) {
+	.date {
+	    display: none;
+	  }
+
+	.profile_image {
+		width: 64px;
+    	height: 64px;
+    	border-radius: 37px;
+	}
+
+	.user_name_text {
+		font-size: 18px;
+	}
+
+	.likes span {
+    	font-size: 18px;
+	}
+
+	svg {
+	    width: 64px;
+	    height: 64px;
+	}
+
+	.post-image {
+		min-width: 500px;
+	}
+}
+
+@media (max-width: 1200px) {
+	.photo-item-container {
+	    justify-content: end;
+	  }
 }
