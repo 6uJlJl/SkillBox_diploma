@@ -1,32 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom'
-import thunk from 'redux-thunk';
-import throttle from 'lodash/throttle';
-
-import Unsplash from 'unsplash-js';
 import PhotoApp from './containers/photo-app';
 import PhotoItem from './containers/photo-item';
-import listofphotos from './reducers/listofphotos';
-import { loadState, saveState } from './localestorage';
-import { addPhotos } from './actions'
+import { configureStore } from './configureStore'
+import Unsplash from 'unsplash-js';
+import { addPhotos } from './actions';
+import { loadState } from './localestorage';
 
-let initialstate = {listOfPhotos: [],
-                        code: "",
-                        counter: 0,
-                        unsplash: {}
-                      };
-
-const store = createStore (
-  listofphotos,
-  initialstate,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+const store = configureStore ();
 
 let unsplash = new Unsplash({
   applicationId: "e4139046c1f47dffb34a77d3bf568bcc4ae568c6070b8210a2e529d16881fcec",
@@ -35,16 +18,14 @@ let unsplash = new Unsplash({
 });
 
 let loadedState = loadState();
-const code = (loadedState)
-  ? loadedState.code
-  : location.search.split('code=')[1];
+
+const code = (loadedState) ? loadedState.code : location.search.split('code=')[1];
 
 if ( code ) {
   try {
     if ( loadedState ) {
       unsplash.auth.setBearerToken(loadedState.bearerToken);
-      store.dispatch ( addPhotos (loadedState.listOfPhotos, loadedState.counter, code, unsplash));
-    }
+      store.dispatch ( addPhotos (loadedState.listOfPhotos, loadedState.counter, code, unsplash)); }
     else {
       unsplash.auth.userAuthentication(code)
         .then(res => res.json())
@@ -52,25 +33,10 @@ if ( code ) {
           unsplash.auth.setBearerToken(json.access_token);
           unsplash.photos.listPhotos(1, 10, "latest")
             .then(res => res.json())
-            .then(json => {
-              store.dispatch ( addPhotos (json, 1, code, unsplash));
-            });
-        });
-    }
-  } catch (e) {
-    console.log("При загрузке фотографий произошла ошибка: "+e);
-  };
+            .then(json => { store.dispatch ( addPhotos (json, 1, code, unsplash)); });
+        })};
+  } catch (e) { console.log("При загрузке фотографий произошла ошибка: "+e); };
 } else alert("Не удалось получить данные от Unsplash, попробуйте перезагрузить страницу или зайдите попозже...");
-
-store.subscribe (throttle(() => {
-  let state = store.getState();
-  saveState({
-    listOfPhotos: state.listOfPhotos,
-    code: state.code,
-    counter: state.counter,
-    bearerToken: state.unsplash._bearerToken
-  } );
-}, 1000));
 
 ReactDOM.render (
   <HashRouter>

@@ -6,13 +6,13 @@ import { likePhoto, unlikePhoto, loadPhotos, addPhotos } from '../actions';
 
 let PhotoApp = (props) => {
 
-  let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos, dispatch } = props
+  let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = props
 
   if ( listOfPhotos.listOfPhotos.length === 0 ) {
     return (<div>
               <p>Секунду, сейчас все загрузится...</p>
             </div>)
-  }
+  };
 
   return (
     <div>

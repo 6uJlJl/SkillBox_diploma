@@ -12,14 +12,19 @@ const MainList = (props) => {
       unsplash
     } = props;
 
+    console.log("MainList: "+unsplash);
+
     return (
-      <div>
+      <div
+        className = "flex-container"
+      >
         {
           listOfPhotos.map ( item => {
               return (
                 <div className="post">
                   <Link to={`/image/${item.id}`} >
                     <img
+                      className="post-image"
                       src={item.urls.small}
                       alt={item.alt_description}
                     />

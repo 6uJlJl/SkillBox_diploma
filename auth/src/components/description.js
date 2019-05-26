@@ -22,8 +22,8 @@ const Description = (props) => {
         </div>
       </div>
       <div className = "date">
-        Дата публикации:<br />
-        {item.created_at.slice(0,10)}
+        <div>Дата публикации:</div>
+        <div>{item.created_at.slice(0,10)}</div>
       </div>
       <div className = "likes">
         <span>

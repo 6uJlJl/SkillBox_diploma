@@ -14,22 +14,28 @@ let PhotoItem = (props) => {
     listOfPhotos.listOfPhotos.map (item => {
       if ( item.id === id ) {
         return (
-          <div
-            className="photo-item"
-          >
+          <div className="photo-item-container">
             <Link to="/">
-              <img
-                src={item.urls.regular}
-                alt={item.alt_description}
-              />
+              <i className="back fas fa-chevron-left"/>
             </Link>
-            <Description
-                item={item}
-                likePhoto={likePhoto}
-                unlikePhoto={unlikePhoto}
-                code = {listOfPhotos.code}
-                unsplash = {listOfPhotos.unsplash}
-            />
+            <div
+              className="photo-item"
+            >
+              <Link to="/">
+                <img
+                  className="item-img"
+                  src={item.urls.regular}
+                  alt={item.alt_description}
+                />
+              </Link>
+              <Description
+                  item={item}
+                  likePhoto={likePhoto}
+                  unlikePhoto={unlikePhoto}
+                  code = {listOfPhotos.code}
+                  unsplash = {listOfPhotos.unsplash}
+              />
+            </div>
           </div>
         )
       }
