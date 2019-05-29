@@ -15,12 +15,8 @@ let PhotoItem = (props) => {
       if ( item.id === id ) {
         return (
           <div className="photo-item-container">
-            <Link to="/">
-              <i className="back fas fa-chevron-left"/>
-            </Link>
-            <div
-              className="photo-item"
-            >
+            <Link to="/"><i className="back fas fa-chevron-left"/></Link>
+            <div className="photo-item" >
               <Link to="/">
                 <img
                   className="item-img"

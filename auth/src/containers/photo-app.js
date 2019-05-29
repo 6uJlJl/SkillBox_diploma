@@ -4,6 +4,7 @@ import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
 import { likePhoto, unlikePhoto, loadPhotos, addPhotos } from '../actions';
 
+
 let PhotoApp = (props) => {
 
   let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = props
