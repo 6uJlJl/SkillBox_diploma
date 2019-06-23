@@ -5,11 +5,8 @@ import { HashRouter, Route } from 'react-router-dom'
 import PhotoApp from './containers/photo-app';
 import PhotoItem from './containers/photo-item';
 import { configureStore } from './configureStore'
-import { initializeApp } from './initializeApp'
 
 const store = configureStore ();
-
-initializeApp (store);
 
 ReactDOM.render (
   <HashRouter>
