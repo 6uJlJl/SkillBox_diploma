@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { HashRouter, Route } from 'react-router-dom'
 import PhotoApp from './containers/photo-app';
 import PhotoItem from './containers/photo-item';
-import { configureStore } from './configureStore'
+import configureStore from './configureStore';
 
-const store = configureStore ();
+let store = configureStore ();
 
 ReactDOM.render (
   <HashRouter>

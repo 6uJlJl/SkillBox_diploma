@@ -22,7 +22,6 @@ const MainList = (props) => {
                   <Description
                       item={item}
                       likePhoto={likePhoto}
-                      unlikePhoto={unlikePhoto}
                       code = {code}
                       unsplash = {unsplash}
                   />

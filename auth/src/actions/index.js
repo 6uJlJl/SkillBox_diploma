@@ -21,19 +21,6 @@ export const likePhoto = (code, unsplash, id) => {
   };
 };
 
-export const unlikePhoto = (code, unsplash, id) => {
-  return dispatch => {
-    try {
-      unsplash.photos.unlikePhoto (id)
-        .then(res => res.json())
-        .then(json => {
-          dispatch({ type: 'LIKE_PHOTO', id}) });
-    } catch (e) {
-      console.log("Произошла ошибка при отправке данных: "+e);
-    };
-  };
-};
-
 export const loadPhotos = (code, unsplash, counter) => {
   return dispatch => {
     try {

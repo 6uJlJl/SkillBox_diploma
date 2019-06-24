@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Likes = ( {id, likes, isLiked, likePhoto, unlikePhoto, code, unsplash} ) => {
+const Likes = ( {id, likes, isLiked, likePhoto, code, unsplash} ) => {
   let className = isLiked ? "red-svg" : "white-svg";
   return (
     <div className = "likes">
@@ -14,10 +14,7 @@ const Likes = ( {id, likes, isLiked, likePhoto, unlikePhoto, code, unsplash} ) =
         height="32"
         aria-hidden="false"
         className={className}
-        onClick={ev => { isLiked
-                         ? unlikePhoto(code, unsplash, id)
-                         : likePhoto(code, unsplash, id)
-        }}
+        onClick={ev => likePhoto(code, unsplash, id)}
       >
         <path d="M17.4 29c-.8.8-2 .8-2.8 0l-12.3-12.8c-3.1-3.1-3.1-8.2 0-11.4 3.1-3.1 8.2-3.1 11.3 0l2.4 2.8 2.3-2.8c3.1-3.1 8.2-3.1 11.3 0 3.1 3.1 3.1 8.2 0 11.4l-12.2 12.8z"/>
       </svg>

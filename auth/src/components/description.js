@@ -5,7 +5,7 @@ import Date from './date';
 import Likes from './likes';
 
 const Description = (props) => {
-  let { item, likePhoto, unlikePhoto, code, unsplash } = props;
+  let { item, likePhoto, code, unsplash } = props;
   return (
     <div className = "description"  >
       <User item={item} />
@@ -14,7 +14,6 @@ const Description = (props) => {
         likes={item.likes}
         isLiked={item.liked_by_user}
         likePhoto={likePhoto}
-        unlikePhoto={unlikePhoto}
         code={code}
         unsplash={unsplash}
         id={item.id}

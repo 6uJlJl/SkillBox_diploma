@@ -4,23 +4,17 @@ import throttle from 'lodash/throttle';
 import { saveState } from './localestorage';
 import { createStore, applyMiddleware, compose } from 'redux';
 
-export const configureStore = () => {
-
+function configureStore () {
   let initialstate = {  listOfPhotos: [],
                         code: "",
                         counter: 0,
                         unsplash: {}
                       };
-
   const store = createStore (
     listofphotos,
     initialstate,
-    compose(
-      applyMiddleware(thunk),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    applyMiddleware(thunk)
   );
-
   store.subscribe (throttle(() => {
     let state = store.getState();
     saveState({
@@ -30,6 +24,7 @@ export const configureStore = () => {
       bearerToken: state.unsplash._bearerToken
     } );
   }, 1000));
-
   return store;
 }
+
+export default configureStore;

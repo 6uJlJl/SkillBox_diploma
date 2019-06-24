@@ -1,4 +1,4 @@
-const listofphotos = (state={}, action) => {
+const listofphotos = (state, action) => {
 
   switch ( action.type ) {
 
