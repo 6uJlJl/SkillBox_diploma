@@ -1,4 +1,7 @@
+import doMasonryLayout from '../masonry';
+
 export const addPhotos = (json, counter, code, unsplash) => {
+
   return {
     type: "ADD_PHOTOS",
     json,
@@ -27,7 +30,9 @@ export const loadPhotos = (code, unsplash, counter) => {
       unsplash.photos.listPhotos(counter+1, 10, "latest")
         .then(res => res.json())
         .then(json => {
-          dispatch({ type: 'ADD_PHOTOS', json, counter, code, unsplash}) });
+          dispatch({ type: 'ADD_PHOTOS', json, counter, code, unsplash});
+          doMasonryLayout(50);
+       });
     } catch (e) {
       console.log("Произошла ошибка при отправке данных: "+e);
     };

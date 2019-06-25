@@ -5,17 +5,16 @@ import Description from './description';
 
 const MainList = (props) => {
     let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash } = props;
-
     return (
-      <div className = "flex-container" >
+      <div>
         {
           listOfPhotos.map ( item => {
               return (
-                <div className="post">
+                <div className="element-item persent-size">
                   <Link to={`/image/${item.id}`} >
                     <img
                       className="post-image"
-                      src={item.urls.small}
+                      src={item.urls.regular}
                       alt={item.alt_description}
                     />
                   </Link>

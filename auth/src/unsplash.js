@@ -1,5 +1,6 @@
 import Unsplash from 'unsplash-js';
 import { loadState } from './localestorage';
+import doMasonryLayout from './masonry';
 
 function firstLoadFromUnsplash (addPhotos) {
 
@@ -17,7 +18,9 @@ function firstLoadFromUnsplash (addPhotos) {
     try {
       if ( loadedState ) {
         unsplash.auth.setBearerToken(loadedState.bearerToken);
-        addPhotos (loadedState.listOfPhotos, loadedState.counter-1, code, unsplash); }
+        addPhotos (loadedState.listOfPhotos, loadedState.counter-1, code, unsplash);
+        doMasonryLayout(50);
+      }
       else {
         unsplash.auth.userAuthentication(code)
           .then(res => res.json() )
@@ -25,7 +28,10 @@ function firstLoadFromUnsplash (addPhotos) {
             unsplash.auth.setBearerToken(json.access_token);
             unsplash.photos.listPhotos(1, 10, "latest")
               .then(res => res.json())
-              .then(json => { addPhotos ( json, 1, code, unsplash )} );
+              .then(json => {
+                  addPhotos ( json, 1, code, unsplash );
+                  doMasonryLayout(50);
+              });
           });
       };
     } catch (e) { console.log("При загрузке фотографий произошла ошибка: "+e);  };

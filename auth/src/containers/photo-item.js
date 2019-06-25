@@ -9,7 +9,8 @@ let PhotoItem = (props) => {
 
   let { id } = props.match.params;
   let { listOfPhotos, likePhoto, unlikePhoto } = props;
-
+  $(".elements-gride").css("height","auto");
+  
   return (
     listOfPhotos.listOfPhotos.map (item => {
       if ( item.id === id ) {

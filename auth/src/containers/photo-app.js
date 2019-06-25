@@ -4,6 +4,9 @@ import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
 import { likePhoto, loadPhotos, addPhotos } from '../actions';
 import firstLoadFromUnsplash from '../unsplash';
+import Masonry from 'masonry-layout';
+import { imagesLoaded } from 'imagesloaded';
+import doMasonryLayout from '../masonry';
 
 class PhotoApp extends React.Component {
   constructor () {
@@ -14,14 +17,14 @@ class PhotoApp extends React.Component {
     const { addPhotos, listOfPhotos } = this.props;
     if ( listOfPhotos.listOfPhotos.length === 0 ) {
       firstLoadFromUnsplash (addPhotos);
-    }
+    } else doMasonryLayout(50);
   }
 
   render () {
     let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos} = this.props
 
     if ( listOfPhotos.listOfPhotos.length === 0 )
-      return (<p>Секунду, сейчас все загрузится...</p>);
+      return (<p>Секунду, сейчас все загрузится...</p>)
 
     return (
       <div>

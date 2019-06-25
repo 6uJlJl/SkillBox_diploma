@@ -15,5 +15,5 @@ ReactDOM.render (
       <Route path="/image/:id" component={PhotoItem} />
     </Provider>
   </HashRouter>,
-  document.querySelector (".posts")
+  document.querySelector ('.elements-gride')
 );

@@ -2,7 +2,6 @@ import React from 'react';
 
 const AddButton = (props) => {
   let { loadPhotos, code, unsplash, counter } = props;
-
   return (
     <input
       type="button"
