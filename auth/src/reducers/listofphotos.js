@@ -21,7 +21,7 @@ const listofphotos = (state, action) => {
                 })};
             return item;
           })
-      })
+      });
 
     default:
       return state;

@@ -1,6 +1,6 @@
 import Unsplash from 'unsplash-js';
-import { loadState } from './localestorage';
-import doMasonryLayout from './masonry';
+import { loadState } from '../localestorage';
+import doMasonryLayout from '../masonry';
 
 function firstLoadFromUnsplash (addPhotos) {
 

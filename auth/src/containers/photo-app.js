@@ -21,10 +21,10 @@ class PhotoApp extends React.Component {
   }
 
   render () {
-    let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos} = this.props
+    let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = this.props
 
     if ( listOfPhotos.listOfPhotos.length === 0 )
-      return (<p>Секунду, сейчас все загрузится...</p>)
+      return (<div className="loading"></div>)
 
     return (
       <div>
@@ -33,6 +33,7 @@ class PhotoApp extends React.Component {
           likePhoto={likePhoto}
           code = {listOfPhotos.code}
           unsplash = {listOfPhotos.unsplash}
+          isFetching = {listOfPhotos.isFetching}
         />
         <AddButton
           loadPhotos={loadPhotos}
@@ -56,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     likePhoto: (code, unsplash, id) => dispatch( likePhoto(code, unsplash, id) ),
     loadPhotos: (code, unsplash, counter) => dispatch( loadPhotos(code, unsplash, counter) ),
-    addPhotos: (json, counter, code, unsplash) => dispatch (addPhotos (json, counter, code, unsplash))
+    addPhotos: (json, counter, code, unsplash) => dispatch ( addPhotos (json, counter, code, unsplash) ),
   }
 }
 

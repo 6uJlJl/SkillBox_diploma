@@ -32,6 +32,7 @@ export const loadPhotos = (code, unsplash, counter) => {
         .then(json => {
           dispatch({ type: 'ADD_PHOTOS', json, counter, code, unsplash});
           doMasonryLayout(50);
+          dispatch ({type: "FETCHING", isFetching: false});
        });
     } catch (e) {
       console.log("Произошла ошибка при отправке данных: "+e);

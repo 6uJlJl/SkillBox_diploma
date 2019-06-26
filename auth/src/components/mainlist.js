@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import Description from './description';
 
 const MainList = (props) => {
-    let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash } = props;
+    let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash, isFetching } = props;
     return (
-      <div>
+      <div className = { isFetching ? "disabled-window" : "" }>
         {
           listOfPhotos.map ( item => {
               return (
