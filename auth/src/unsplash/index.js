@@ -1,6 +1,5 @@
 import Unsplash from 'unsplash-js';
 import { loadState } from '../localestorage';
-import doMasonryLayout from '../masonry';
 
 function firstLoadFromUnsplash (addPhotos) {
 
@@ -18,8 +17,7 @@ function firstLoadFromUnsplash (addPhotos) {
     try {
       if ( loadedState ) {
         unsplash.auth.setBearerToken(loadedState.bearerToken);
-        addPhotos (loadedState.listOfPhotos, loadedState.counter-1, code, unsplash);
-        doMasonryLayout(50);
+        addPhotos ( loadedState.listOfPhotos , loadedState.counter-1, code, unsplash);
       }
       else {
         unsplash.auth.userAuthentication(code)
@@ -30,7 +28,6 @@ function firstLoadFromUnsplash (addPhotos) {
               .then(res => res.json())
               .then(json => {
                   addPhotos ( json, 1, code, unsplash );
-                  doMasonryLayout(50);
               });
           });
       };
