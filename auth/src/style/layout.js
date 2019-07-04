@@ -1,7 +1,7 @@
 
 function order3Columns (items) {
   let col1=0;
-  let col2=0;
+  let col2=0;  
   let col3=0;
   let contWidth = $(".elements-gride").width()*0.32;
 
@@ -20,9 +20,9 @@ function order3Columns (items) {
       else {
         items[i].order = "1";
         col3 = col3 + items[i].height/(items[i].width/contWidth) + 80; }
-      }
-  };
-  console.log(col1, col2, col3);
+    }
+  }
+  
   let height = Math.round( Math.max (col1, col2, col3) );
   $(".elements-gride").height(height);
   return items;
@@ -60,10 +60,10 @@ export const orderPhotos = (items) => {
   let width = $(window).width();
   let orderedItems;
   if ( width >= 1200 )
-    { orderedItems = order3Columns(items) }
+    { orderedItems = order3Columns(items); }
   else
     if ( width >= 768 )
-      { orderedItems = order2Columns(items) }
-    else { orderedItems = order1Column(items) }
+      { orderedItems = order2Columns(items); }
+    else { orderedItems = order1Column(items); }
   return orderedItems;
-}
+};

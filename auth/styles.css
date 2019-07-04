@@ -178,16 +178,16 @@ input {
    }
  }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
 	.element-item {
 			width: 49%;
 	}
 }
 
-@media (max-width: 768px) {
-	.persent-size {
-	    width: 98%
-	}
+@media (max-width: 767px) {
+	.element-item {
+		width: 98%;
+}
 }
 
 @media (max-width: 400px) {

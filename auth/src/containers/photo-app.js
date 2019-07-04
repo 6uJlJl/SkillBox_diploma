@@ -6,6 +6,8 @@ import { likePhoto, loadPhotos, addPhotos, resizeWindow } from '../actions';
 import firstLoadFromUnsplash from '../unsplash';
 import { imagesLoaded } from 'imagesloaded';
 
+let prevWidth = $(window).width();
+
 class PhotoApp extends React.Component {
   constructor () {
     super();
@@ -13,16 +15,26 @@ class PhotoApp extends React.Component {
 
   componentDidMount () {
     const { addPhotos, listOfPhotos, resizeWindow } = this.props;
-    if ( listOfPhotos.listOfPhotos.length === 0 ) {
+    
+    if ( listOfPhotos.listOfPhotos.length === 0 ) { 
       firstLoadFromUnsplash (addPhotos);
-    }
-    window.addEventListener("resize", resizeWindow (listOfPhotos.listOfPhotos))
+    } else resizeWindow(listOfPhotos.listOfPhotos);
+
+    window.addEventListener("resize", () => {
+      let currentWidth = $(window).width();
+      if ( prevWidth >= 1200) { if ( currentWidth < 1200 ) {  this.props.resizeWindow (this.props.listOfPhotos.listOfPhotos); prevWidth=currentWidth; }}
+        else  if ( prevWidth >= 768 ) {
+                if ( currentWidth >= 1200 ) {  this.props.resizeWindow (this.props.listOfPhotos.listOfPhotos); prevWidth=currentWidth;};
+                if ( currentWidth < 768 ) {  this.props.resizeWindow (this.props.listOfPhotos.listOfPhotos); prevWidth=currentWidth; };
+              }
+              else { if ( currentWidth >= 768 ) {  this.props.resizeWindow (this.props.listOfPhotos.listOfPhotos); prevWidth=currentWidth; };
+      }
+    })
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize");
+    // window.removeEventListener("resize", ()=>{} );
   }
-
 
   render () {
     let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = this.props
