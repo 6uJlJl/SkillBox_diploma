@@ -1,10 +1,12 @@
-const listofphotos = (state, action) => {
+import { orderPhotos } from '../style/layout';
 
+const listofphotos = (state, action) => {
   switch ( action.type ) {
 
     case "ADD_PHOTOS":
+      let listOfPhotos = orderPhotos (state.listOfPhotos.concat (action.json)) ;
       return Object.assign ({}, state,{
-          listOfPhotos: state.listOfPhotos.concat (action.json),
+          listOfPhotos: listOfPhotos,
           counter: action.counter+1,
           code : action.code,
           unsplash : action.unsplash
@@ -22,6 +24,11 @@ const listofphotos = (state, action) => {
             return item;
           })
       });
+
+    case "RESIZE_WINDOW":
+      return Object.assign ({}, state, {
+        listOfPhotos: orderPhotos(action.listOfPhotos)
+      })
 
     default:
       return state;

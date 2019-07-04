@@ -6,11 +6,11 @@ import Description from './description';
 const MainList = (props) => {
     let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash, isFetching } = props;
     return (
-      <div className = { isFetching ? "disabled-window" : "" }>
+      <div className = "elements-container" style={{"height": $(".elements-gride").height()}}>
         {
           listOfPhotos.map ( item => {
               return (
-                <div className="element-item persent-size">
+                <div className="element-item" style={{"order":item.order}}>
                   <Link to={`/image/${item.id}`} >
                     <img
                       className="post-image"

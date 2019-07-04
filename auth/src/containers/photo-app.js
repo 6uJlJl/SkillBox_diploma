@@ -2,11 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
-import { likePhoto, loadPhotos, addPhotos } from '../actions';
+import { likePhoto, loadPhotos, addPhotos, resizeWindow } from '../actions';
 import firstLoadFromUnsplash from '../unsplash';
-import Masonry from 'masonry-layout';
 import { imagesLoaded } from 'imagesloaded';
-import doMasonryLayout from '../masonry';
 
 class PhotoApp extends React.Component {
   constructor () {
@@ -14,10 +12,16 @@ class PhotoApp extends React.Component {
   }
 
   componentDidMount () {
-    const { addPhotos, listOfPhotos } = this.props;
-    if ( listOfPhotos.listOfPhotos.length === 0 ) {
+    const { addPhotos, listOfPhotos, resizeWindow } = this.props;
+    
+    if ( listOfPhotos.listOfPhotos.length === 0 )  
       firstLoadFromUnsplash (addPhotos);
-    } else doMasonryLayout(50);
+    else 
+      resizeWindow(listOfPhotos.listOfPhotos);
+
+    window.addEventListener("resize", () => {
+      this.props.resizeWindow (this.props.listOfPhotos.listOfPhotos);
+    });
   }
 
   render () {
@@ -58,6 +62,7 @@ const mapDispatchToProps = (dispatch) => {
     likePhoto: (code, unsplash, id) => dispatch( likePhoto(code, unsplash, id) ),
     loadPhotos: (code, unsplash, counter) => dispatch( loadPhotos(code, unsplash, counter) ),
     addPhotos: (json, counter, code, unsplash) => dispatch ( addPhotos (json, counter, code, unsplash) ),
+    resizeWindow : (listOfPhotos) => dispatch ( resizeWindow (listOfPhotos) )
   }
 }
 
