@@ -24,12 +24,6 @@ class PhotoApp extends React.Component {
     });
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", () => {
-      this.props.resizeWindow (this.props.listOfPhotos.listOfPhotos);
-    });
-  }
-
   render () {
     let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = this.props
 
