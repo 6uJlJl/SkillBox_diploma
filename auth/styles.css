@@ -2,10 +2,20 @@ html, body {
 	font-family: Helvetica;
 	margin: 0;
 	padding: 0;
+	background: url("img/scribble_light.png");
 }
 
 p {
 	text-align: center;
+}
+
+svg {
+	cursor: pointer;
+}
+
+input {
+	cursor: pointer;
+	font-size: 20px;
 }
 
 .red-svg {
@@ -30,8 +40,17 @@ p {
 }
 
 .element-item {
-		width: 32%;
-    padding: 5px;
+	width: 31%;
+	padding: 5px;
+	margin: 5px;
+	border: 2px solid #fcfcfc;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	background-color: #fff;
+
+}
+
+.element-item:not(:hover){
+	opacity: 0.9;
 }
 
 .description {
@@ -43,7 +62,8 @@ p {
 	        align-items: center;
   	-webkit-box-pack: space-evenly;
   	    -ms-flex-pack: space-evenly;
-  	        justify-content: space-evenly;
+			  justify-content: space-evenly;
+	background-color: #fff;
 }
 
 .user {
@@ -180,13 +200,13 @@ input {
 
 @media (max-width: 1199px) {
 	.element-item {
-			width: 49%;
+			width: 47%;
 	}
 }
 
 @media (max-width: 767px) {
 	.element-item {
-		width: 98%;
+		width: 96%;
 }
 }
 

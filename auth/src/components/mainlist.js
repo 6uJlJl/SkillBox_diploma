@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Description from './description';
 
 const MainList = (props) => {
-    let { listOfPhotos, likePhoto, code, unsplash } = props;
+    let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash } = props;
     return (
       <div className = "elements-container" style={{"height": $(".elements-gride").height()}}>
         {
@@ -21,6 +21,7 @@ const MainList = (props) => {
                   <Description
                       item={item}
                       likePhoto={likePhoto}
+                      unlikePhoto={unlikePhoto}
                       code = {code}
                       unsplash = {unsplash}
                   />

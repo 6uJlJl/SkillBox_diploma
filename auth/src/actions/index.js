@@ -11,13 +11,34 @@ export const addPhotos = (json, counter, code, unsplash) => {
 
 export const likePhoto = (code, unsplash, id) => {
   return dispatch => {
+    dispatch({ type: 'LIKE_PHOTO', id});
     try {
       unsplash.photos.likePhoto (id)
         .then(res => res.json())
-        .then(json => {
-          dispatch({ type: 'LIKE_PHOTO', id}) });
+        .then(json => { 
+            console.log(json.photo.liked_by_user);
+            if ( !json.photo.liked_by_user) dispatch({ type: 'LIKE_PHOTO', id}) ;
+         });
     } catch (e) {
-      console.log("Произошла ошибка при отправке данных: "+e);
+        dispatch({ type: 'LIKE_PHOTO', id});
+        console.log("Произошла ошибка при отправке данных: "+e);
+    };
+  };
+};
+
+export const unlikePhoto = (code, unsplash, id) => {
+  return dispatch => {
+    dispatch({ type: 'LIKE_PHOTO', id});
+    try {
+      unsplash.photos.unlikePhoto (id)
+        .then(res => res.json())
+        .then(json => { 
+            console.log(json.photo.liked_by_user);
+            if ( json.photo.liked_by_user) dispatch({ type: 'LIKE_PHOTO', id}) ;
+         });
+    } catch (e) {
+        dispatch({ type: 'LIKE_PHOTO', id});
+        console.log("Произошла ошибка при отправке данных: "+e);
     };
   };
 };

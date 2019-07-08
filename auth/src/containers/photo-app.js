@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
-import { likePhoto, loadPhotos, addPhotos, resizeWindow } from '../actions';
+import { likePhoto, unlikePhoto, loadPhotos, addPhotos, resizeWindow } from '../actions';
 import firstLoadFromUnsplash from '../unsplash';
 
 class PhotoApp extends React.Component {
@@ -24,7 +24,7 @@ class PhotoApp extends React.Component {
   }
 
   render () {
-    let { listOfPhotos, likePhoto, loadPhotos } = this.props
+    let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = this.props
 
     if ( listOfPhotos.listOfPhotos.length === 0 )
       return (<div className="loading"></div>)
@@ -34,6 +34,7 @@ class PhotoApp extends React.Component {
         <MainList
           listOfPhotos={listOfPhotos.listOfPhotos}
           likePhoto={likePhoto}
+          unlikePhoto = {unlikePhoto}
           code = {listOfPhotos.code}
           unsplash = {listOfPhotos.unsplash}
           isFetching = {listOfPhotos.isFetching}
@@ -58,6 +59,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     likePhoto: (code, unsplash, id) => dispatch( likePhoto(code, unsplash, id) ),
+    unlikePhoto: (code, unsplash, id) => dispatch( unlikePhoto(code, unsplash, id) ),
     loadPhotos: (code, unsplash, counter) => dispatch( loadPhotos(code, unsplash, counter) ),
     addPhotos: (json, counter, code, unsplash) => dispatch ( addPhotos (json, counter, code, unsplash) ),
     resizeWindow : (listOfPhotos) => dispatch ( resizeWindow (listOfPhotos) )
