@@ -4,7 +4,6 @@ import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
 import { likePhoto, loadPhotos, addPhotos, resizeWindow } from '../actions';
 import firstLoadFromUnsplash from '../unsplash';
-import { imagesLoaded } from 'imagesloaded';
 
 class PhotoApp extends React.Component {
   constructor () {
@@ -25,7 +24,7 @@ class PhotoApp extends React.Component {
   }
 
   render () {
-    let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = this.props
+    let { listOfPhotos, likePhoto, loadPhotos } = this.props
 
     if ( listOfPhotos.listOfPhotos.length === 0 )
       return (<div className="loading"></div>)
@@ -47,9 +46,8 @@ class PhotoApp extends React.Component {
         />
       </div>
     )
-  };
-};
-
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

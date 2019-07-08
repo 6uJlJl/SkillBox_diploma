@@ -20,7 +20,7 @@ const listofphotos = (state, action) => {
                 return Object.assign ({}, item, {
                   liked_by_user : !item.liked_by_user,
                   likes : newLikes
-                })};
+                })}
             return item;
           })
       });
@@ -33,7 +33,7 @@ const listofphotos = (state, action) => {
     default:
       return state;
 
-  };
+  }
 
 };
 

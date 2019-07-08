@@ -1,12 +1,10 @@
 {
-  "name": "hw16merkulov",
+  "name": "skillboxdiplomajs",
   "version": "1.0.0",
   "description": "exam work",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
-    "start": "./node_modules/.bin/webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack"
   },
   "keywords": [
     "examwork"
@@ -14,21 +12,27 @@
   "author": "Alexey Merkulov",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "babel-preset-react": "^6.24.1",
-    "webpack": "^4.30.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.13.0",
+    "webpack": "^4.35.2",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "imagesloaded": "^4.1.4",
+    "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "unsplash-js": "^5.0.0"
   }
 }

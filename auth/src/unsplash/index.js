@@ -30,8 +30,8 @@ function firstLoadFromUnsplash (addPhotos) {
                   addPhotos ( json, 1, code, unsplash );
               });
           });
-      };
-    } catch (e) { console.log("При загрузке фотографий произошла ошибка: "+e);  };
+      }
+    } catch (e) { console.log("При загрузке фотографий произошла ошибка: "+e);  }
 
   } else console.log("Не удалось получить данные от Unsplash, попробуйте перезагрузить страницу или зайдите попозже...");
 }

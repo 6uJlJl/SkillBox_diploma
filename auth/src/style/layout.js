@@ -9,17 +9,17 @@ function order3Columns (items) {
     if (col1 <= col2) {
       if (col1 <= col3) {
         items[i].order = "-1";
-        col1 = col1 + items[i].height/(items[i].width/contWidth) + 66; }
+        col1 = col1 + items[i].height/(items[i].width/contWidth) + 76; }
       else {
         items[i].order = "1";
-        col3 = col3 + items[i].height/(items[i].width/contWidth) + 66; }
+        col3 = col3 + items[i].height/(items[i].width/contWidth) + 76; }
     } else {
       if (col2 <= col3) {
         items[i].order = "0";
-        col2 = col2 + items[i].height/(items[i].width/contWidth) + 66; }
+        col2 = col2 + items[i].height/(items[i].width/contWidth) + 76; }
       else {
         items[i].order = "1";
-        col3 = col3 + items[i].height/(items[i].width/contWidth) + 66; }
+        col3 = col3 + items[i].height/(items[i].width/contWidth) + 76; }
     }
   }
   
@@ -36,11 +36,11 @@ function order2Columns(items) {
   for (let i=0; i<items.length; i++) {
     if (col1 <= col2) {
         items[i].order = "-1";
-        col1 = col1 + items[i].height/(items[i].width/contWidth) + 66; }
+        col1 = col1 + items[i].height/(items[i].width/contWidth) + 76; }
     else {
         items[i].order = "0";
-        col2 = col2 + items[i].height/(items[i].width/contWidth) + 66; }
-  };
+        col2 = col2 + items[i].height/(items[i].width/contWidth) + 76; }
+  }
   let height = Math.round( Math.max (col1, col2) );
   $(".elements-gride").height(height);
   return items;
@@ -50,7 +50,7 @@ function order1Column (items) {
   let contWidth = $(".elements-gride").width()*0.98;
   let height = 0;
   for (let i=0; i<items.length; i++) {
-    height = height + items[i].height/(items[i].width/contWidth) + 66;
+    height = height + items[i].height/(items[i].width/contWidth) + 76;
   }
   $(".elements-gride").height(height);
   return items;

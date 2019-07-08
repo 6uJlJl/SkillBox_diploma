@@ -8,7 +8,7 @@ import Description from '../components/description';
 let PhotoItem = (props) => {
 
   let { id } = props.match.params;
-  let { listOfPhotos, likePhoto, unlikePhoto } = props;
+  let { listOfPhotos, likePhoto } = props;
   $(".elements-gride").css("height","auto");
   
   return (

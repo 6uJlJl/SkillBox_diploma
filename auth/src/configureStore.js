@@ -2,7 +2,7 @@ import listofphotos from './reducers/listofphotos';
 import thunk from 'redux-thunk';
 import throttle from 'lodash/throttle';
 import { saveState } from './localestorage';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 function configureStore () {
   let initialstate = {  listOfPhotos: [],
