@@ -40,6 +40,7 @@ function order2Columns(items) {
     else {
         items[i].order = "0";
         col2 = col2 + items[i].height/(items[i].width/contWidth) + 86; }
+    
   }
   let height = Math.round( Math.max (col1, col2) );
   $(".elements-gride").height(height);

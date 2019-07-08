@@ -13,11 +13,6 @@ svg {
 	cursor: pointer;
 }
 
-input {
-	cursor: pointer;
-	font-size: 20px;
-}
-
 .red-svg {
     fill: #f15151;
 }
@@ -30,6 +25,10 @@ input {
   text-align: center;
   font-size: 40px;
   font-weight: bold;
+}
+
+.elements-gride {
+	text-align: center;
 }
 
 .elements-container {
@@ -146,16 +145,20 @@ input {
 }
 
 .post-image {
-		width: 100%;
+	width: 100%;
 }
 
 input {
 	position: relative;
-	width: 100%;
+	width: 98%;
 	height: 60px;
 	padding: 10px;
-	margin: 20px 0;
-	border: none;
+	margin: 20px auto;
+	background-color: #fff;
+	border: 2px solid #fcfcfc;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	cursor: pointer;
+	font-size: 20px;
 }
 
 .loading{
@@ -207,7 +210,10 @@ input {
 @media (max-width: 767px) {
 	.element-item {
 		width: 96%;
-}
+	}
+	.element-item:not(:hover){
+		opacity: 1;
+	}
 }
 
 @media (max-width: 400px) {
