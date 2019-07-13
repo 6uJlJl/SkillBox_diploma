@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 import Description from './description';
+import { saveScroll } from "../localestorage";
 
 const MainList = (props) => {
     let { listOfPhotos, likePhoto, unlikePhoto, code, unsplash } = props;
@@ -11,7 +12,7 @@ const MainList = (props) => {
           listOfPhotos.map ( item => {
               return (
                 <div className="element-item" style={{"order":item.order}}>
-                  <Link to={`/image/${item.id}`} >
+                  <Link to={`/image/${item.id}`} onClick={()=>{saveScroll()}} >
                     <img
                       className="post-image"
                       src={item.urls.regular}

@@ -4,7 +4,7 @@
   "description": "exam work",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack"
+    "start": "./node_modules/.bin/webpack"
   },
   "keywords": [
     "examwork"

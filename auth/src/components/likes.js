@@ -1,4 +1,5 @@
 import React from 'react';
+import { saveScroll } from "../localestorage";
 
 const Likes = ( {id, likes, isLiked, likePhoto, unlikePhoto, code, unsplash} ) => {
   let className = isLiked ? "red-svg" : "white-svg";
@@ -14,8 +15,10 @@ const Likes = ( {id, likes, isLiked, likePhoto, unlikePhoto, code, unsplash} ) =
         height="32"
         aria-hidden="false"
         className={className}
-        onClick={ () => { isLiked 
-            ? unlikePhoto(code, unsplash, id) 
+        onClick={ () => {
+          saveScroll();
+          isLiked
+            ? unlikePhoto(code, unsplash, id)
             : likePhoto(code, unsplash, id) }
         }
       >

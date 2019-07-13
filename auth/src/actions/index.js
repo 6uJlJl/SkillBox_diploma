@@ -1,3 +1,5 @@
+import { LoadScroll } from "../localestorage";
+
 export const addPhotos = (json, counter, code, unsplash) => {
 
   return {
@@ -15,7 +17,7 @@ export const likePhoto = (code, unsplash, id) => {
     try {
       unsplash.photos.likePhoto (id)
         .then(res => res.json())
-        .then(json => { 
+        .then(json => {
             console.log(json.photo.liked_by_user);
             if ( !json.photo.liked_by_user) dispatch({ type: 'LIKE_PHOTO', id}) ;
          });
@@ -32,7 +34,7 @@ export const unlikePhoto = (code, unsplash, id) => {
     try {
       unsplash.photos.unlikePhoto (id)
         .then(res => res.json())
-        .then(json => { 
+        .then(json => {
             console.log(json.photo.liked_by_user);
             if ( json.photo.liked_by_user) dispatch({ type: 'LIKE_PHOTO', id}) ;
          });
@@ -50,6 +52,7 @@ export const loadPhotos = (code, unsplash, counter) => {
         .then(res => res.json())
         .then(json => {
           dispatch({ type: 'ADD_PHOTOS', json, counter, code, unsplash});
+          LoadScroll();
        });
     } catch (e) {
       console.log("Произошла ошибка при отправке данных: "+e);

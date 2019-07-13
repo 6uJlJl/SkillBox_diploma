@@ -10,13 +10,14 @@ let PhotoItem = (props) => {
   let { id } = props.match.params;
   let { listOfPhotos, likePhoto, unlikePhoto } = props;
   $(".elements-gride").css("height","auto");
-  
+  $(window).scrollTop(0);
+
   return (
     listOfPhotos.listOfPhotos.map (item => {
       if ( item.id === id ) {
         return (
           <div className="photo-item-container">
-            <Link to="/"><i className="back fas fa-chevron-left"/></Link>
+            <Link to="/"> <i className="back fas fa-chevron-left"/> </Link>
             <div className="photo-item" >
               <Link to="/">
                 <img

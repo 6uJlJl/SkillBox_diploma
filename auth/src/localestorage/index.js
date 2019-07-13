@@ -1,3 +1,25 @@
+export const saveScroll = () => {
+  try {
+    let scroll = $(window).scrollTop();
+    if ( $(".elements-container").length===1 ) {
+      localStorage.setItem ('photogramScroll', scroll);
+      console.log("Сохранили: "+localStorage.getItem ('photogramScroll'));
+    }
+  } catch (error) {
+    console.log("Не удалось установить значение Scroll "+ error);
+  }
+}
+
+export const LoadScroll = () => {
+  try {
+    let scrollTo = + localStorage.getItem ('photogramScroll');
+    console.log("загрузили: "+scrollTo);
+    if (scrollTo != null) { $(window).scrollTop(scrollTo) };
+  } catch (error) {
+    console.log("Не удалось получить значение Scroll из localstorage " + error);
+  }
+}
+
 export const loadState = () => {
   try {
     const loadedState = localStorage.getItem ('photogramState');

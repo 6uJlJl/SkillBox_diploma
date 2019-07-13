@@ -4,6 +4,7 @@ import MainList from '../components/mainlist';
 import AddButton from '../components/add-button';
 import { likePhoto, unlikePhoto, loadPhotos, addPhotos, resizeWindow } from '../actions';
 import firstLoadFromUnsplash from '../unsplash';
+import { saveScroll, LoadScroll } from "../localestorage";
 
 class PhotoApp extends React.Component {
   constructor () {
@@ -12,10 +13,9 @@ class PhotoApp extends React.Component {
 
   componentDidMount () {
     const { addPhotos, listOfPhotos, resizeWindow } = this.props;
-    
-    if ( listOfPhotos.listOfPhotos.length === 0 )  
+    if ( listOfPhotos.listOfPhotos.length === 0 )
       firstLoadFromUnsplash (addPhotos);
-    else 
+    else
       resizeWindow(listOfPhotos.listOfPhotos);
 
     window.addEventListener("resize", () => {
@@ -25,10 +25,10 @@ class PhotoApp extends React.Component {
 
   render () {
     let { listOfPhotos, likePhoto, unlikePhoto, loadPhotos } = this.props
+    LoadScroll();
 
     if ( listOfPhotos.listOfPhotos.length === 0 )
-      return (<div className="loading"></div>)
-
+      return (<div className="loading"></div>);
     return (
       <div>
         <MainList
