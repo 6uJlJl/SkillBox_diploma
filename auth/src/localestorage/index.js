@@ -9,7 +9,7 @@ export const saveScroll = () => {
   }
 }
 
-export const LoadScroll = (message) => {
+export const LoadScroll = () => {
   try {
     let scrollTo = + localStorage.getItem ('photogramScroll');
     if (scrollTo) { $(window).scrollTop(scrollTo) };

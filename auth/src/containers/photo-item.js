@@ -15,8 +15,6 @@ let PhotoItem = (props) => {
   return (
     listOfPhotos.listOfPhotos.map (item => {
       if ( item.id === id ) {
-        console.log(item);
-
         return (
           <div className="photo-item-container">
             <Link to="/"> <i className="back fas fa-chevron-left"/> </Link>
