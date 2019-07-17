@@ -9,10 +9,10 @@ export const saveScroll = () => {
   }
 }
 
-export const LoadScroll = () => {
+export const LoadScroll = (message) => {
   try {
     let scrollTo = + localStorage.getItem ('photogramScroll');
-    if (scrollTo != null) { $(window).scrollTop(scrollTo) };
+    if (scrollTo) { $(window).scrollTop(scrollTo) };
   } catch (error) {
     console.log("Не удалось получить значение Scroll из localstorage " + error);
   }

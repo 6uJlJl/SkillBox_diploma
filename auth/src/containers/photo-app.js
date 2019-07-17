@@ -28,9 +28,13 @@ class PhotoApp extends React.Component {
     LoadScroll();
 
     if ( listOfPhotos.listOfPhotos.length === 0 )
-      return (<div className="loading"></div>);
+      return (<div className="loading-wrapper">
+                <div className="loading"></div>
+              </div>
+      );
     return (
       <div>
+
         <MainList
           listOfPhotos={listOfPhotos.listOfPhotos}
           likePhoto={likePhoto}
